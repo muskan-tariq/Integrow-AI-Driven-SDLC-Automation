@@ -1,0 +1,736 @@
+ Integrow Project - Comprehensive Analysis
+📋 Executive Summary
+Integrow is an ambitious AI-powered, end-to-end SDLC (Software Development Life Cycle) automation platform being developed as a Final Year Project (FYP) at FAST-NUCES. It's a desktop-first application built with Electron, Next.js, and FastAPI that aims to solve the critical problem of tool fragmentation across the software development lifecycle.
+
+🎯 Core Problem Being Solved
+Current SDLC tools operate in isolated silos, causing:
+
+32.7% time loss during CI/CD tasks
+30% cost increase due to tool fragmentation
+92% of technical debt models ignore cross-phase SDLC impact
+48.6% of test generation relies on outdated legacy tests
+Lack of requirements-to-deployment traceability
+💡 Integrow's Innovation
+The first unified platform with:
+
+✅ Context-aware cross-module feedback loops (no other tool does this)
+✅ Bidirectional UML-Code synchronization (most tools are one-way)
+✅ Cross-phase technical debt analysis (92% of tools ignore this)
+✅ 100% traceability from requirements through deployment
+✅ Research-validated approach (15+ papers, 2020-2025)
+🏗️ System Architecture
+Technology Stack
+Frontend (Desktop Application)
+Framework:     Next.js 14 + TypeScript + React 19 RC
+Desktop:       Electron (via Nextron)
+UI Library:    Tailwind CSS + shadcn/ui
+Code Editor:   Monaco Editor (VS Code's editor)
+Diagrams:      Mermaid.js + PlantUML renderer
+State:         React Context + Zustand
+Backend (API Server)
+Framework:     FastAPI (Python 3.10+)
+AI Orchestration:
+  - LangGraph (Requirements Analysis)
+  - CrewAI (UML Generation - planned)
+  
+AI Models:
+  - Groq (LLaMA 3.3 70B) - Primary
+  - Google Gemini 2.5 Flash - Secondary
+  - GPT-4 - Fallback
+  - BERT - Technical Debt Mining (planned)
+  
+NLP:           spaCy (en_core_web_sm)
+ML:            scikit-learn, TensorFlow, PyTorch (planned)
+Testing:       pytest, Playwright
+Infrastructure
+Database:      Supabase (PostgreSQL)
+Cache:         Redis (planned)
+Auth:          GitHub OAuth
+Version Control: Git + GitHub API
+CI/CD:         GitHub Actions (with RL optimization - planned)
+📦 The 7 Core Modules
+✅ Module 1: Requirements & Ethics Auditor (COMPLETE - Phase 1)
+Status: Production-ready ✅
+
+Technology: LangGraph orchestration with 4 AI agents
+
+Capabilities:
+
+Ambiguity Detection
+
+Structured prompt engineering (GPT-3.5/4 approach)
+10-shot in-context learning
+Target: 97% precision (research-validated)
+Completeness Verification
+
+Missing error handling detection
+Edge case identification
+Security considerations audit
+Target: 20.2% improvement in classification
+Ethics & Fairness Audit
+
+Bias detection (gender, race, age)
+Privacy violation checks
+Discrimination patterns
+Accessibility requirements
+User Story Generation
+
+Automatic conversion to user stories
+Acceptance criteria generation
+Priority and story points assignment
+Agents:
+
+ParserAgent - Extracts actors, actions, entities using spaCy
+AmbiguityAgent - Detects vague/ambiguous terms
+CompletenessAgent - Checks for missing requirements
+EthicsAgent - Audits ethical concerns
+Output:
+
+Quality scores (0-1 scale)
+Annotated requirements with inline suggestions
+User stories with acceptance criteria
+Version-controlled YAML files (.integrow/requirements/)
+Research Base: [9][10][11] - 97% precision, 20.2% improvement
+
+🔄 Module 2: UML Synthesizer (PLANNED - Phase 2)
+Status: Not started 🔄
+
+Technology: CrewAI multi-agent framework
+
+Capabilities:
+
+Natural Language to UML
+
+Convert requirements to UML diagrams
+Support for: Class, Sequence, Use Case, Activity diagrams
+Target: 98% precision/recall in entity extraction
+Multimodal UML Processing
+
+Image-to-UML conversion
+Hand-drawn diagram recognition
+Legacy diagram modernization
+Bidirectional UML-Code Sync
+
+Code-to-UML reverse engineering
+UML-to-Code generation
+Consistency maintenance
+Traceability
+
+Direct linking: Requirements → UML → Code
+Change impact analysis
+Dependency tracking
+Output:
+
+Validated UML diagrams (PlantUML/Mermaid)
+Traceability matrix
+Consistency reports
+Executable code from UML
+Research Base: [5][12][13][14] - 98% precision, 88.46% accuracy
+
+🔍 Module 3: Code Review Assistant (PLANNED - Phase 3)
+Status: Not started 🔄
+
+Technology: Hybrid LLM + Static Analyzers (Neuro-Symbolic)
+
+Capabilities:
+
+Hybrid Code Analysis
+
+LLM-based contextual reasoning
+Static analyzer integration (ESLint, Pylint, SonarQube)
+Target: 22% reduction in false positives
+Intelligent Issue Detection
+
+Logic errors
+Security vulnerabilities
+Performance bottlenecks
+Code smells
+Automated Fix Suggestions
+
+Context-aware code fixes
+Refactoring recommendations
+Best practice enforcement
+Requirements Traceability
+
+Link code to requirements
+Verify requirement implementation
+Detect requirement drift
+Output:
+
+Code review reports with severity levels
+Automated fix pull requests
+Traceability to requirements
+Maintainability scores
+Research Base: [4][19][20][21][22] - 22% false positive reduction
+
+🧪 Module 4: Test Generator (PLANNED - Phase 4)
+Status: Not started 🔄
+
+Technology: LLM (LLaMA fine-tuned) + Genetic Algorithms
+
+Capabilities:
+
+LLM-Powered Test Generation
+
+Automatic test case generation
+Domain-aware testing (e.g., FinTech)
+Target: 92% coverage, 65% time reduction
+Few-Shot Learning
+
+10-shot test generation
+Educational code testing
+Target: 85% defect recall
+Mutation Testing
+
+Genetic algorithm optimization
+Coverage feedback loops
+Test quality improvement
+Context-Aware Generation
+
+Uses UML diagrams for test scenarios
+References requirements for edge cases
+Integrates code review findings
+Output:
+
+High-coverage test suites
+Mutation test reports
+Test quality metrics
+Continuous test optimization
+Research Base: [23][24][25][26][27] - 92% coverage, 65% time reduction
+
+📊 Module 5: Technical Debt Analyzer (PLANNED - Phase 5)
+Status: Not started 🔄
+
+Technology: LSTM + ARIMA + BERT + Gradient Boosting
+
+Capabilities:
+
+Debt Prediction
+
+High-debt module prediction
+Target: 87% accuracy using LSTM+ARIMA
+Remediation effort estimation (MAE = 3.2 days)
+SATD Detection (Self-Admitted Technical Debt)
+
+Comment mining for technical debt
+Target: 91% F1-score using BERT
+Proactive debt hotspot detection
+Cross-Phase Debt Analysis ⭐ (Unique Innovation)
+
+Integrates UML complexity metrics
+References requirements ambiguities
+Analyzes code review findings
+Fills Gap: 92% of models ignore cross-phase impact
+Social Network Metrics
+
+Developer collaboration patterns
+Code ownership analysis
+Team-based debt prediction
+Output:
+
+Debt heatmaps
+Prioritized refactoring tasks
+Architectural Debt Index
+Remediation effort estimates
+Research Base: [28][29][30][31][32] - 87% accuracy, 91% F1-score
+
+🔄 Module 6: CI/CD Orchestration (PLANNED - Phase 6)
+Status: Not started 🔄
+
+Technology: Reinforcement Learning + GitHub Actions/Jenkins
+
+Capabilities:
+
+RL-Optimized Pipelines
+
+Dynamic pipeline optimization
+Resource utilization improvement
+Execution time reduction
+Self-Healing Mechanisms
+
+Dependency conflict resolution
+Flaky test detection and retry
+Automatic rollback on failures
+Addresses: 32.7% time loss in CI/CD
+Intelligent Build Orchestration
+
+Parallel execution optimization
+Cache management
+Artifact versioning
+Cross-Module Integration
+
+Runs tests from Test Generator
+Applies Code Review findings
+Tracks Technical Debt metrics
+Output:
+
+Optimized pipeline configurations
+Self-healing logs
+Performance analytics
+Target: 30% cost reduction
+Research Base: [8][38][39] - 32.7% time saved, 30% cost reduction
+
+🤖 Module 7: Autonomous Git Agent (BASIC COMPLETE - Phase 0)
+Status: Basic version ✅ | Enhanced version planned 🔄
+
+Technology: GitPython + PyGithub + LLM-generated commits
+
+Current Capabilities:
+
+Basic Git operations (init, add, commit, push)
+GitHub repository management
+Branch management (main + develop)
+Planned Capabilities:
+
+Proactive Commits
+
+Milestone-driven commits
+Feature completion detection
+Automatic staging and committing
+Event-Driven Commits
+
+File change detection
+Test pass triggers
+Code review approval triggers
+Professional Commit Messages
+
+LLM-generated messages
+Conventional Commits format
+Detailed change descriptions
+Traceability to requirements/issues
+Branch Management
+
+Automatic branch creation
+Feature branch workflows
+Merge conflict resolution
+Output:
+
+Professional commit history
+Automated version control
+Traceability logs
+Branch management reports
+🔗 Cross-Module Integration (The Key Innovation)
+Context-Aware Feedback Loops
+Unlike existing tools, Integrow modules share context and learn from each other:
+
+Requirements Auditor
+    ↓ (ambiguity data)
+UML Synthesizer
+    ↓ (complexity metrics)
+Technical Debt Analyzer
+    ↓ (debt hotspots)
+Code Review Assistant
+    ↓ (vulnerability patterns)
+Test Generator
+    ↓ (test results)
+CI/CD Orchestration
+    ↓ (deployment success)
+Requirements Auditor (feedback loop)
+Example Integration Scenarios
+1. Requirements → UML → Code → Tests
+Requirement analyzed for ambiguity
+UML generated with traceability
+Code reviewed against UML
+Tests generated from UML scenarios
+2. Debt Analysis with Full Context
+Uses UML complexity metrics
+References requirements ambiguities
+Analyzes code review findings
+Prioritizes based on test coverage
+3. Intelligent CI/CD
+Runs tests from Test Generator
+Applies Code Review fixes
+Tracks Technical Debt trends
+Commits via Autonomous Git Agent
+📁 Project Structure
+integrow-dev/
+├── backend/                    # FastAPI Backend
+│   ├── agents/                 # AI Agents
+│   │   ├── requirements/       # ✅ Phase 1 Agents (COMPLETE)
+│   │   │   ├── parser_agent.py
+│   │   │   ├── ambiguity_agent.py
+│   │   │   ├── completeness_agent.py
+│   │   │   ├── ethics_agent.py
+│   │   │   └── orchestrator_agent.py
+│   │   ├── user_stories/       # ✅ User Story Agents (COMPLETE)
+│   │   │   ├── user_story_agent.py
+│   │   │   └── story_refinement_agent.py
+│   │   ├── uml/                # 🔄 UML Agents (PARTIAL)
+│   │   │   ├── class_diagram_agent.py
+│   │   │   └── diagram_analyzer.py
+│   │   └── integration/        # ✅ Git Agents (BASIC)
+│   │       ├── git_agent.py
+│   │       └── github_agent.py
+│   ├── api/                    # API Routes
+│   │   ├── auth_router.py
+│   │   ├── project_router.py
+│   │   ├── requirements_router.py
+│   │   ├── user_stories_router.py
+│   │   └── uml_router.py
+│   ├── workflows/              # Orchestration
+│   │   ├── analysis_workflow.py  # ✅ Requirements workflow
+│   │   └── uml_workflow.py       # 🔄 UML workflow (partial)
+│   ├── services/               # External Services
+│   │   ├── supabase_service.py
+│   │   ├── groq_service.py
+│   │   ├── gemini_service.py
+│   │   └── plantuml_service.py
+│   ├── models/                 # Data Models
+│   ├── tests/                  # ✅ 20+ Unit Tests (>70% coverage)
+│   ├── main.py                 # FastAPI Entry Point
+│   └── requirements.txt
+│
+├── frontend/                   # Electron + Next.js Frontend
+│   ├── main/                   # Electron Main Process
+│   ├── renderer/               # Next.js Renderer
+│   │   ├── app/                # Next.js App Router
+│   │   │   ├── auth/           # Authentication Pages
+│   │   │   ├── dashboard/      # Dashboard
+│   │   │   └── project/        # Project Pages
+│   │   ├── components/         # React Components
+│   │   │   ├── ui/             # shadcn/ui components
+│   │   │   ├── requirements/   # Requirements UI
+│   │   │   ├── user-stories/   # User Stories UI
+│   │   │   └── uml/            # UML Diagram UI
+│   │   ├── lib/                # Utilities
+│   │   └── styles/             # Global Styles
+│   └── package.json
+│
+├── docs/                       # Documentation
+│   ├── integrow-phase0-prd.md  # Phase 0 PRD
+│   ├── integrow-phase1-prd.md  # Phase 1 PRD
+│   ├── PHASE1_SUMMARY.md       # Phase 1 Summary
+│   ├── API_SETUP_GUIDE.md
+│   ├── TOKEN_MANAGEMENT_GUIDE.md
+│   └── UAT_TESTING_GUIDE.md
+│
+└── projects/                   # User Projects Storage
+    └── shuja609/               # Example user projects
+🚀 Development Roadmap
+✅ Phase 0: Foundation (COMPLETE)
+Duration: 2 weeks | Status: Production-ready ✅
+
+✅ Electron desktop application
+✅ GitHub OAuth authentication
+✅ Project management
+✅ Git/GitHub integration
+✅ Basic Autonomous Git Agent
+✅ Phase 1: Requirements & Ethics Auditor (COMPLETE)
+Duration: 4 weeks | Status: Production-ready ✅
+
+Completed Features:
+
+✅ LangGraph-based workflow orchestration
+✅ 4 AI agents (Parser, Ambiguity, Completeness, Ethics)
+✅ User Story Generator with acceptance criteria
+✅ WebSocket streaming chat for real-time analysis
+✅ Monaco Editor with inline annotations
+✅ Export functionality (YAML, JSON, Markdown)
+✅ Git versioning for requirements
+✅ 20+ unit tests (>70% coverage)
+✅ Quality scoring system (0-1 scale)
+✅ API usage tracking (Groq/Gemini/GPT-4)
+Key Files:
+
+Backend: 
+backend/workflows/analysis_workflow.py
+Agents: backend/agents/requirements/*.py
+API: 
+backend/api/requirements_router.py
+Frontend: frontend/renderer/components/requirements/
+🔄 Phase 2: UML Synthesizer (PLANNED)
+Duration: 4 weeks | Status: Not started 🔄
+
+Planned Features:
+
+⏳ CrewAI multi-agent setup
+⏳ Natural language to UML conversion
+⏳ Multimodal UML processing (image-to-UML)
+⏳ Bidirectional UML-Code sync
+⏳ Requirements-UML traceability
+⏳ PlantUML/Mermaid integration
+Partial Implementation:
+
+🔄 
+backend/agents/uml/class_diagram_agent.py
+ (basic structure exists)
+🔄 
+backend/workflows/uml_workflow.py
+ (basic workflow exists)
+🔄 
+backend/services/plantuml_service.py
+ (PlantUML rendering)
+🔄 Phase 3: Code Review Assistant (PLANNED)
+Duration: 3 weeks | Status: Not started 🔄
+
+Planned Features:
+
+⏳ LLM + Static analyzer hybrid
+⏳ Neuro-symbolic reasoning
+⏳ Automated fix generation
+⏳ Requirements traceability in code
+⏳ Integration with UML Synthesizer
+🔄 Phase 4: Test Generator (PLANNED)
+Duration: 3 weeks | Status: Not started 🔄
+
+Planned Features:
+
+⏳ LLM-powered test generation
+⏳ Genetic algorithm optimization
+⏳ Fuzzing integration
+⏳ UML-based test scenarios
+⏳ Coverage feedback loops
+🔄 Phase 5: Technical Debt Analyzer (PLANNED)
+Duration: 3 weeks | Status: Not started 🔄
+
+Planned Features:
+
+⏳ LSTM + ARIMA prediction models
+⏳ BERT-based SATD mining
+⏳ Cross-phase debt analysis
+⏳ Heatmap visualization
+⏳ Integration with all modules
+🔄 Phase 6: CI/CD Orchestration (PLANNED)
+Duration: 3 weeks | Status: Not started 🔄
+
+Planned Features:
+
+⏳ Reinforcement learning optimization
+⏳ Self-healing mechanisms
+⏳ Pipeline analytics
+⏳ Full module integration
+⏳ Enhanced Autonomous Git Agent
+🎯 Final Integration (PLANNED)
+Duration: 2 weeks | Status: Not started 🔄
+
+Planned Activities:
+
+⏳ End-to-end testing
+⏳ Performance optimization
+⏳ Documentation completion
+⏳ Desktop app packaging
+⏳ Research paper publication
+📊 Current Implementation Status
+What's Working (Phase 0 + Phase 1)
+✅ Backend
+FastAPI server with CORS and authentication
+Supabase database integration
+GitHub OAuth authentication
+Project management (CRUD operations)
+Requirements analysis workflow (LangGraph)
+User story generation
+WebSocket streaming for real-time updates
+API routing for all Phase 1 features
+20+ unit tests with >70% coverage
+✅ Frontend
+Electron desktop application
+Next.js 14 with App Router
+GitHub OAuth login flow
+Project dashboard
+Requirements editor (Monaco Editor)
+Real-time analysis streaming
+User stories display
+Export functionality
+Responsive UI with Tailwind CSS
+✅ AI Agents (Phase 1)
+ParserAgent - NLP entity extraction (spaCy)
+AmbiguityAgent - Ambiguity detection (LLM)
+CompletenessAgent - Completeness checking (LLM)
+EthicsAgent - Ethics auditing (LLM + patterns)
+UserStoryAgent - User story generation (LLM)
+✅ Infrastructure
+Supabase PostgreSQL database
+GitHub API integration
+Groq API (LLaMA 3.3 70B)
+Google Gemini API (2.5 Flash)
+GPT-4 fallback support
+What's Planned (Phases 2-6)
+🔄 UML Module (Phase 2)
+CrewAI orchestration
+Image-to-UML conversion
+Bidirectional code sync
+Full traceability
+🔄 Code Review Module (Phase 3)
+Hybrid LLM + linters
+Automated fixes
+Security scanning
+🔄 Test Generator (Phase 4)
+LLM test generation
+Mutation testing
+Coverage optimization
+🔄 Technical Debt (Phase 5)
+ML-based prediction
+SATD mining
+Cross-phase analysis
+🔄 CI/CD (Phase 6)
+RL optimization
+Self-healing pipelines
+Full integration
+🎓 Academic Context
+Final Year Project (FYP)
+Institution: FAST-NUCES (National University of Computer and Emerging Sciences)
+Department: Computer Science
+Project Type: Software Engineering Research
+Team: 3 members
+Muskan Tariq
+Amna Hassan
+Shuja-uddin (shuja609)
+Supervisors
+Dr. Muhammad Bilal (Project Lead)
+Ms. Fatima Gillani (Co-Supervisor)
+Research Contribution
+Integrow addresses a critical gap identified in the literature:
+
+"Existing AI-driven SDLC tools achieve high performance in isolated phases (97% precision in requirements, 92% test coverage) but operate in completely isolated environments, causing 32.7% time loss and 30% cost increase. 92% of technical debt models ignore cross-phase SDLC impact."
+
+Research Foundation
+15+ papers analyzed (2020-2025)
+6 SDLC domains covered
+Research-validated metrics for each module
+Novel contribution: Cross-module context sharing
+📈 Expected Impact
+Time Savings (Target)
+Requirements Analysis: 60% reduction
+UML Generation: 70% reduction
+Code Review: 40% reduction
+Test Generation: 65% reduction
+CI/CD: 32.7% reduction
+Overall SDLC: 40-50% time savings
+Cost Savings (Target)
+Tool Consolidation: 30% reduction (6 tools → 1 platform)
+API Costs: <$15/month (free-tier strategy)
+Developer Productivity: 2x improvement
+Bug Reduction: 25% fewer defects
+Quality Improvements (Target)
+Requirements Quality: 95%+ clarity score
+Code Quality: 22% fewer false positives
+Test Coverage: 85%+ coverage
+Technical Debt: 87% accurate prediction
+Traceability: 100% requirements-to-code linking
+🔑 Key Innovations
+1. Unified Context Transmission ⭐
+All modules share a common context graph
+Changes in one module trigger updates in others
+Example: Ambiguous requirement → UML warning → Code review flag → Test edge case
+2. Bidirectional Synchronization ⭐
+UML ↔ Code consistency maintained automatically
+Requirements ↔ Tests traceability enforced
+Design ↔ Implementation alignment verified
+3. Cross-Phase Technical Debt ⭐
+First system to analyze debt across entire SDLC
+Integrates: Requirements ambiguity + UML complexity + Code smells + Test coverage
+Predictive debt forecasting with 87%+ accuracy
+4. Autonomous Git Agent
+LLM-generated professional commit messages
+Event-driven commits (test pass, review approval, milestone)
+Automatic traceability to requirements/issues
+5. Desktop-First Approach
+Offline-capable (local AI models option)
+File system access for project management
+Native performance (Electron)
+GitHub integration for collaboration
+💻 How to Run the Project
+Prerequisites
+# Backend
+Python 3.10+
+pip install -r backend/requirements.txt
+# Frontend
+Node.js 18+
+npm install (in frontend/)
+Environment Setup
+# Backend: backend/.env
+SUPABASE_URL=your_supabase_url
+SUPABASE_KEY=your_supabase_key
+GROQ_API_KEY=your_groq_key
+GOOGLE_API_KEY=your_gemini_key
+GITHUB_CLIENT_ID=your_github_client_id
+GITHUB_CLIENT_SECRET=your_github_client_secret
+# Frontend: frontend/renderer/.env.local
+NEXT_PUBLIC_API_URL=http://localhost:8000
+NEXT_PUBLIC_GITHUB_CLIENT_ID=your_github_client_id
+Running the Application
+Backend (FastAPI)
+cd backend
+python main.py
+# Server runs on http://localhost:8000
+# API docs: http://localhost:8000/docs
+Frontend (Electron + Next.js)
+cd frontend
+npm run dev
+# Electron app launches automatically
+Running Tests
+cd backend
+pytest
+# 20+ tests, >70% coverage
+📚 Documentation
+Available Documentation
+docs/integrow-phase0-prd.md
+ - Phase 0 Product Requirements
+docs/integrow-phase1-prd.md
+ - Phase 1 Product Requirements
+docs/PHASE1_SUMMARY.md
+ - Phase 1 Summary
+docs/API_SETUP_GUIDE.md
+ - API Setup Instructions
+docs/TOKEN_MANAGEMENT_GUIDE.md
+ - Token Management
+docs/UAT_TESTING_GUIDE.md
+ - User Acceptance Testing
+docs/UML_CLASS_DIAGRAM_ROADMAP.md
+ - UML Implementation Plan
+🎯 What Makes Integrow Unique
+Compared to Existing Tools
+Feature	Integrow	Jira	GitHub Copilot	SonarQube
+Requirements Analysis	✅ AI-powered	❌ Manual	❌ No	❌ No
+UML Generation	✅ Automated	❌ Manual	❌ No	❌ No
+Code Review	✅ Hybrid AI+Linters	❌ Manual	⚠️ Suggestions only	✅ Static only
+Test Generation	✅ AI-powered	❌ Manual	⚠️ Limited	❌ No
+Technical Debt	✅ Cross-phase ML	❌ No	❌ No	⚠️ Code only
+CI/CD Optimization	✅ RL-based	❌ Manual	❌ No	❌ No
+Cross-Module Context	✅ YES	❌ NO	❌ NO	❌ NO
+100% Traceability	✅ YES	⚠️ Partial	❌ NO	❌ NO
+Desktop-First	✅ Electron	❌ Web	❌ IDE Plugin	❌ Web
+🚧 Current Challenges & Next Steps
+Immediate Next Steps (Phase 2)
+Complete UML Synthesizer
+
+Implement CrewAI multi-agent system
+Add image-to-UML conversion
+Build bidirectional code sync
+Enhance UML Workflow
+
+Improve PlantUML rendering
+Add more diagram types (Sequence, Activity)
+Implement traceability matrix
+Testing & Validation
+
+Expand test coverage to 80%+
+Add integration tests
+User acceptance testing
+Long-Term Goals (Phases 3-6)
+Code Review Assistant with hybrid AI
+Test Generator with genetic algorithms
+Technical Debt Analyzer with ML models
+CI/CD Orchestration with RL
+Research paper publication
+📞 Project Information
+Repository: https://github.com/shuja609/integrow
+Team: Muskan Tariq, Amna Hassan, Shuja-uddin
+Supervisors: Dr. Muhammad Bilal, Ms. Fatima Gillani
+Institution: FAST-NUCES
+Status: Phase 1 Complete ✅ | 5 Phases Remaining 🚀
+🎯 Summary
+Integrow is a research-driven, AI-powered SDLC automation platform that solves the fundamental problem of tool fragmentation in software development. With Phase 1 complete (Requirements & Ethics Auditor), the project has a solid foundation and is ready to expand into the remaining 5 modules.
+
+Current State
+✅ Production-ready Requirements Analysis
+✅ Desktop application with Electron + Next.js
+✅ AI-powered analysis with LangGraph
+✅ 20+ tests with >70% coverage
+✅ Research-validated approach
+Vision
+Transform software development from fragmented, manual processes to a unified, AI-assisted workflow that maintains quality, traceability, and efficiency across the entire SDLC.
+
+Target: 40-50% time savings, 30% cost reduction, 25% fewer defects, 100% traceability.
+
+This analysis was generated on 2025-12-10 based on the current state of the Integrow project.

@@ -1,0 +1,14 @@
+# dependencies
+node_modules
+nextron-shadcn-app
+
+# logs
+*.log
+
+# next.js
+.next
+next-env.d.ts
+
+# build
+/application_build
+dist

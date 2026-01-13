@@ -1,0 +1,103 @@
+{#
+Service Layer Template for Code Generation
+Generates a service class with business logic methods.
+#}
+"""
+{{ class_name }} Service
+
+Auto-generated service layer for {{ class_name }}.
+"""
+
+from typing import List, Optional
+from uuid import UUID
+import logging
+
+# TODO: Import your dependencies
+# from services.supabase_service import supabase_service
+
+logger = logging.getLogger(__name__)
+
+
+class {{ class_name }}Service:
+    """Service class for {{ class_name }} business logic."""
+
+    def __init__(self):
+        """Initialize the {{ class_name }} service."""
+        # TODO: Initialize dependencies (database client, etc.)
+        pass
+
+    async def get_all(self) -> List[dict]:
+        """Get all {{ class_name | lower }} records."""
+        try:
+            # TODO: Implement database query
+            logger.info("Fetching all {{ class_name | lower }}s")
+            return []
+        except Exception as e:
+            logger.error(f"Error fetching {{ class_name | lower }}s: {e}")
+            raise
+
+    async def get_by_id(self, id: UUID) -> Optional[dict]:
+        """Get a {{ class_name | lower }} by ID."""
+        try:
+            # TODO: Implement database query
+            logger.info(f"Fetching {{ class_name | lower }} with id: {id}")
+            return None
+        except Exception as e:
+            logger.error(f"Error fetching {{ class_name | lower }}: {e}")
+            raise
+
+    async def create(self, data: dict) -> dict:
+        """Create a new {{ class_name | lower }}."""
+        try:
+            # TODO: Implement database insert
+            logger.info(f"Creating {{ class_name | lower }}")
+            return {"id": "generated-id", **data}
+        except Exception as e:
+            logger.error(f"Error creating {{ class_name | lower }}: {e}")
+            raise
+
+    async def update(self, id: UUID, data: dict) -> Optional[dict]:
+        """Update an existing {{ class_name | lower }}."""
+        try:
+            # TODO: Implement database update
+            logger.info(f"Updating {{ class_name | lower }} with id: {id}")
+            return {"id": str(id), **data}
+        except Exception as e:
+            logger.error(f"Error updating {{ class_name | lower }}: {e}")
+            raise
+
+    async def delete(self, id: UUID) -> bool:
+        """Delete a {{ class_name | lower }}."""
+        try:
+            # TODO: Implement database delete
+            logger.info(f"Deleting {{ class_name | lower }} with id: {id}")
+            return True
+        except Exception as e:
+            logger.error(f"Error deleting {{ class_name | lower }}: {e}")
+            raise
+{% if methods %}
+
+
+    # Custom business logic from UML methods
+{% for method in methods %}
+{% if method.name not in ['get_all', 'get_by_id', 'create', 'update', 'delete', '__init__'] %}
+{% if method.is_async %}
+    async def {{ method.name }}(self{% for param in method.parameters %}, {{ param.name }}: {{ param.type | python_type }}{% endfor %}) -> {{ method.return_type | python_type }}:
+{% else %}
+    def {{ method.name }}(self{% for param in method.parameters %}, {{ param.name }}: {{ param.type | python_type }}{% endfor %}) -> {{ method.return_type | python_type }}:
+{% endif %}
+        """{{ method.description or 'Implement ' + method.name + ' logic.' }}"""
+        try:
+            # TODO: Implement {{ method.name }}
+            logger.info("Executing {{ method.name }}")
+            raise NotImplementedError("{{ method.name }} not implemented")
+        except Exception as e:
+            logger.error(f"Error in {{ method.name }}: {e}")
+            raise
+{% endif %}
+{% endfor %}
+{% endif %}
+
+
+# Singleton instance
+{{ class_name | lower }}_service = {{ class_name }}Service()

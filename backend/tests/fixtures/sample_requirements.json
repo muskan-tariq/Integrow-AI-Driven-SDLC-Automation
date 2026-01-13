@@ -1,0 +1,42 @@
+{
+  "ambiguity_cases": [
+    {
+      "text": "The app must be fast and user-friendly.",
+      "ambiguous_terms": ["fast", "user-friendly"]
+    },
+    {
+      "text": "Provide a quick and secure login experience.",
+      "ambiguous_terms": ["quick", "secure"]
+    },
+    {
+      "text": "Ensure reliable performance under load.",
+      "ambiguous_terms": ["reliable"]
+    }
+  ],
+  "completeness_cases": [
+    {
+      "text": "User shall login with email and password.",
+      "expected_missing_categories": ["error_handling", "edge_cases", "performance", "security"]
+    },
+    {
+      "text": "System processes orders within SLA.",
+      "expected_missing_categories": ["error_handling", "edge_cases", "security"]
+    }
+  ],
+  "ethics_cases": [
+    {
+      "text": "Only male users can access premium features.",
+      "expected_issue_types": ["bias"]
+    },
+    {
+      "text": "The service will track user location for analytics.",
+      "expected_issue_types": ["privacy"]
+    },
+    {
+      "text": "Collect personal data and biometric information for verification.",
+      "expected_issue_types": ["privacy"]
+    }
+  ]
+}
+
+

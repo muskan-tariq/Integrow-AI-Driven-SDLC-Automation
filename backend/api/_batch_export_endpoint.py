@@ -1,0 +1,113 @@
+@router.post("/session/{session_id}/export-github")
+async def export_session_to_github(
+    session_id: UUID,
+    current_user: dict = Depends(get_current_user)
+):
+    """Export an entire review session (batch) to GitHub as a consolidated report."""
+    try:
+        from datetime import datetime
+        
+        # 1. Fetch session with all reviews and issues
+        session_res = supabase_service.client.table("review_sessions") \
+            .select("*, projects(*), code_reviews(*, review_issues(*))") \
+            .eq("id", str(session_id)) \
+            .execute()
+        
+        if not session_res.data:
+            raise HTTPException(status_code=404, detail="Session not found")
+            
+        session = session_res.data[0]
+        project = session["projects"]
+        reviews = session["code_reviews"]
+        
+        # Verify ownership
+        if project["user_id"] != current_user.id:
+            raise HTTPException(status_code=403, detail="Not authorized")
+
+        # 2. Format as consolidated Markdown report
+        timestamp = session["created_at"].split(".")[0].replace(":", "-").replace("T", "_")
+        filename = f"review_session_v{session['version']}_{timestamp}.md"
+        report_path = f".integrow/reviews/{filename}"
+        
+        md_content = f"""# AI Code Review Session - Version {session['version']}
+**Date:** {session['created_at']}
+**Overall Quality Score:** {session['score']}/100
+**Files Reviewed:** {len(reviews)}
+
+## Session Summary
+{session.get('summary', 'Batch code review analysis')}
+
+---
+
+"""
+        
+        # Add each file's review
+        for idx, review in enumerate(reviews, 1):
+            issues = review.get("review_issues", [])
+            md_content += f"""## {idx}. {review.get('file_path', 'Unknown File')}
+**Score:** {review['score']}/100
+**Summary:** {review.get('summary', 'No summary available')}
+
+"""
+            if issues:
+                md_content += f"### Issues Found ({len(issues)})\n\n"
+                for issue in issues:
+                    md_content += f"""#### [{issue['severity'].upper()}] {issue['issue_type']}
+- **Line:** {issue.get('line_number', 'N/A')}
+- **Description:** {issue['description']}
+"""
+                    if issue.get('suggested_fix'):
+                        md_content += f"- **Suggested Fix:**\n```\n{issue['suggested_fix']}\n```\n"
+                    md_content += "\n"
+            else:
+                md_content += "✅ No issues detected in this file.\n\n"
+            
+            md_content += "---\n\n"
+
+        # 3. Push to GitHub
+        user_res = supabase_service.client.table("users").select("access_token_encrypted").eq("id", current_user.id).execute()
+        encrypted_token = user_res.data[0]["access_token_encrypted"]
+        
+        from agents.integration.github_agent import GitHubAgent
+        github_agent = GitHubAgent.from_encrypted_token(encrypted_token)
+        
+        repo_name = project["github_repo_url"].split("/")[-1]
+        
+        result = await github_agent.create_or_update_file(
+            repo_name=repo_name,
+            path=report_path,
+            content=md_content,
+            message=f"docs: add AI code review session V{session['version']} ({len(reviews)} files)",
+            branch=project.get("default_branch", "main")
+        )
+
+        # 4. Update session and all reviews with GitHub export status
+        commit_sha = result["commit"]
+        export_time = datetime.utcnow().isoformat()
+        
+        supabase_service.client.table("review_sessions").update({
+            "github_exported": True,
+            "github_commit_sha": commit_sha,
+            "github_exported_at": export_time
+        }).eq("id", str(session_id)).execute()
+        
+        # Also mark all individual reviews as exported
+        for review in reviews:
+            supabase_service.client.table("code_reviews").update({
+                "github_exported": True,
+                "github_commit_sha": commit_sha,
+                "github_exported_at": export_time
+            }).eq("id", review["id"]).execute()
+
+        return {
+            "status": "success",
+            "github_path": report_path,
+            "commit_sha": commit_sha,
+            "files_exported": len(reviews)
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error exporting session to GitHub: {e}")
+        raise HTTPException(status_code=500, detail=str(e))

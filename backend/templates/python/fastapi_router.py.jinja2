@@ -1,0 +1,70 @@
+{#
+FastAPI Router Template for Code Generation
+Generates a FastAPI router with CRUD endpoints for a model.
+#}
+"""
+{{ class_name }} API Router
+
+Auto-generated CRUD endpoints for {{ class_name }}.
+"""
+
+from typing import List
+from uuid import UUID
+
+from fastapi import APIRouter, Depends, HTTPException, status
+
+# TODO: Import your models and dependencies
+# from models.{{ class_name | lower }} import {{ class_name }}
+# from dependencies import get_current_user
+
+router = APIRouter(prefix="/api/{{ class_name | lower }}s", tags=["{{ class_name }}"])
+
+
+@router.get("/", response_model=List[dict])
+async def list_{{ class_name | lower }}s():
+    """Get all {{ class_name | lower }}s."""
+    # TODO: Implement list logic
+    return []
+
+
+@router.get("/{id}", response_model=dict)
+async def get_{{ class_name | lower }}(id: UUID):
+    """Get a {{ class_name | lower }} by ID."""
+    # TODO: Implement get logic
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="{{ class_name }} not found")
+
+
+@router.post("/", response_model=dict, status_code=status.HTTP_201_CREATED)
+async def create_{{ class_name | lower }}(data: dict):
+    """Create a new {{ class_name | lower }}."""
+    # TODO: Implement create logic
+    return {"id": "generated-id", **data}
+
+
+@router.put("/{id}", response_model=dict)
+async def update_{{ class_name | lower }}(id: UUID, data: dict):
+    """Update an existing {{ class_name | lower }}."""
+    # TODO: Implement update logic
+    return {"id": str(id), **data}
+
+
+@router.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_{{ class_name | lower }}(id: UUID):
+    """Delete a {{ class_name | lower }}."""
+    # TODO: Implement delete logic
+    return None
+{% if methods %}
+
+
+# Custom endpoints from UML methods
+{% for method in methods %}
+{% if method.visibility.value == 'public' and method.name not in ['__init__', '__str__', '__repr__'] %}
+
+@router.post("/{{ method.name | replace('_', '-') }}")
+async def {{ method.name }}({% for param in method.parameters %}{{ param.name }}: {{ param.type | python_type }}{% if not loop.last %}, {% endif %}{% endfor %}):
+    """{{ method.description or 'Execute ' + method.name + '.' }}"""
+    # TODO: Implement {{ method.name }}
+    raise HTTPException(status_code=status.HTTP_501_NOT_IMPLEMENTED, detail="Not implemented")
+{% endif %}
+{% endfor %}
+{% endif %}

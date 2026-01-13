@@ -1,0 +1,50 @@
+{#
+Pydantic Model Template for Code Generation
+Generates a Pydantic BaseModel class from a parsed class definition.
+#}
+"""
+{{ class_name }} Model
+
+Auto-generated from UML class diagram.
+"""
+
+from __future__ import annotations
+
+from datetime import datetime
+from typing import List, Optional, Any
+from uuid import UUID
+
+from pydantic import BaseModel, Field
+
+
+class {{ class_name }}(BaseModel):
+    """{{ description or class_name + ' model.' }}"""
+{% if attributes %}
+{% for attr in attributes %}
+{% if attr.is_optional %}
+    {{ attr.name }}: Optional[{{ attr.type | python_type }}] = {{ attr.default_value or 'None' }}
+{% elif attr.default_value %}
+    {{ attr.name }}: {{ attr.type | python_type }} = {{ attr.default_value }}
+{% else %}
+    {{ attr.name }}: {{ attr.type | python_type }}
+{% endif %}
+{% endfor %}
+{% else %}
+    pass
+{% endif %}
+{% if methods %}
+
+
+    # Methods
+{% for method in methods %}
+{% if method.is_async %}
+    async def {{ method.name }}(self{% for param in method.parameters %}, {{ param.name }}: {{ param.type | python_type }}{% if param.default_value %} = {{ param.default_value }}{% endif %}{% endfor %}) -> {{ method.return_type | python_type }}:
+{% else %}
+    def {{ method.name }}(self{% for param in method.parameters %}, {{ param.name }}: {{ param.type | python_type }}{% if param.default_value %} = {{ param.default_value }}{% endif %}{% endfor %}) -> {{ method.return_type | python_type }}:
+{% endif %}
+        """{{ method.description or method.name + ' implementation.' }}"""
+        # TODO: Implement {{ method.name }}
+        raise NotImplementedError("{{ method.name }} not implemented")
+
+{% endfor %}
+{% endif %}
